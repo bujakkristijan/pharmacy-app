@@ -6,6 +6,7 @@
     padding: 40px 60px;
     border-radius: 20px;
     box-shadow: 0 0 10px 0 rgb(0,0, 0, 0.2);
+    
 }
 
 .btn-container{
@@ -31,4 +32,9 @@
     font-size: 28px;
     font-weight: 500;
     margin-bottom: 20px;
+}
+
+.table-container{
+    max-height: 340px;
+    overflow-y: scroll;
 }

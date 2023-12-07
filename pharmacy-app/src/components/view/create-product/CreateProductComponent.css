@@ -11,3 +11,7 @@
 .info-container{
     margin-bottom: 16px;
 }
+
+.swal2-confirm.swal2-styled{
+    background-color: rgb(226, 0, 0);
+}

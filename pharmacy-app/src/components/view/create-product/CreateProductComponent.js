@@ -4,6 +4,7 @@ import { Form } from 'react-bootstrap';
 import { useEffect } from 'react';
 import './CreateProductComponent.css';
 import { useNavigate } from 'react-router-dom';
+import AlertService from '../../../services/AlertService';
 
 const CreateProductComponent = (props) => {
   const setProductList = props.setProductList;
@@ -25,16 +26,18 @@ const CreateProductComponent = (props) => {
 
   const createProduct = () =>{
     if(id.trim() === "" || name.trim() === "" || isNaN(parseInt(price)) || parseInt(price) < 0 || manufacturer == undefined || expiryDate < new Date()){
-      alert("Invalid input");
+      AlertService.alertFail("Invalid input, try again!");
     }
     else if(checkIfIdExist() === true){
-      alert("ID already exists, try another one!");
+      AlertService.alertFail("ID already exists, try another one!");
     }
     else{
       const newProduct = {id: id, name: name, manufacturer: manufacturer, price: price, expiryDate, expiryDate}
       setProductList([...productList, newProduct]);
+      AlertService.alertSuccess("Successfully added product!")
+      setTimeout(()=>navigateToListProduct(), 1500);
       // ProductService.addProduct(newProduct);
-      navigateToListProduct();
+      
     }
   }
 

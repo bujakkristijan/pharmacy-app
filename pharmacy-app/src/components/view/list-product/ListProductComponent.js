@@ -1,6 +1,5 @@
 import React from 'react'
 import './ListProductComponent.css';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import ProductService from '../../../services/ProductService';
@@ -23,7 +22,7 @@ const ListProductComponent = (props) => {
     <div className='list-product-container'>
       {productList && productList.length ===0 && <div className='title'>List is empty</div>}
       {productList && productList.length !==0 && <div className='title'>Product list</div>}
-      {productList && productList.length !==0 && <table id="table" className='table table-hover'> 
+      {productList && productList.length !==0 && <div className='table-container'><table id="table" className='table table-hover'> 
                 <thead className='thead-name'>
                     <tr>
                         <th className='theadth'>ID</th>
@@ -53,7 +52,7 @@ const ListProductComponent = (props) => {
                         )
                     }
                 </tbody>
-            </table>
+            </table></div>
         }   
         <div className='btn-container'>
             <button className='btn-create-product' onClick={navigateToCreateProduct}>Create new product</button>
