@@ -10,8 +10,26 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-  const [productList, setProductList] = useState([]);
+  const [productList, setProductList] = useState(JSON.parse(localStorage.getItem('productList')) || []);
+  const [manufacturerList, setManufacturerList] = useState([]);
   const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    let localList = localStorage.getItem('productList') || [];
+    if(!localList){
+      localList = [];
+      localStorage.setItem('productList',JSON.stringify(localList))
+    } else {
+      try {
+        localList = JSON.parse(localList)
+      } catch (error) {
+        console.log(error);
+      }
+      
+    }
+    setProductList(localList);
+  }, [])
+  
 
   useEffect(() => {
     if (!isInitialized) {
@@ -23,9 +41,29 @@ function App() {
     const storedProducts = localStorage.getItem('productList');
     const products = storedProducts ? JSON.parse(storedProducts) : [];
 
+    const storedManufacturers = localStorage.getItem('manufacturerList');
+    const manufacturers = storedManufacturers ? JSON.parse(storedManufacturers) : [];
+
     setProductList(products);
+    setManufacturerList(manufacturers);
     setIsInitialized(true);
   };
+
+  // const updateProductList = (newProductList) => {
+  //   // Update the product list state and save it to local storage
+  //   setProductList(newProductList);
+  //   ProductService.saveProducts(newProductList);
+  // };
+
+  // nzm zasto ovako nece, a trebalo bi da radi kada se posalje kao props create product komponenti, umesto toga saljem posebno
+  // setProductList i productList
+  const addProductToList = (newProduct) => {
+    setProductList([...productList, newProduct]);
+  }
+
+  useEffect(() => {
+    localStorage.setItem('productList',JSON.stringify(productList));
+  }, [productList])
 
   return (
     <Router>
@@ -39,9 +77,9 @@ function App() {
             </div>
             <div className='view-components-container'>
               <Routes>
-                  <Route path='/' element={<ListProductComponent></ListProductComponent>}></Route>
+                  <Route path='/' element={<ListProductComponent productList = {productList}></ListProductComponent>}></Route>
                   <Route path='/list-product' element={<ListProductComponent productList = {productList}></ListProductComponent>}></Route>
-                  <Route path='/create-product' element={<CreateProductComponent></CreateProductComponent>}></Route>
+                  <Route path='/create-product' element={<CreateProductComponent setProductList={setProductList} productList = {productList}></CreateProductComponent>}></Route>
                   <Route path='/edit-product/:id' element={<EditProductComponent></EditProductComponent>}></Route>
                   <Route path='/about' element={<AboutApplicationComponent></AboutApplicationComponent>}></Route>
               </Routes>

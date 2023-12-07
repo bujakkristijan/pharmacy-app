@@ -1,4 +1,34 @@
-#table{
-    width: 80%;
-    margin: auto;
+.list-product-container{
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 0 rgb(0,0, 0, 0.2);
+}
+
+.btn-container{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-create-product{
+    padding: 10px 20px;
+    background-color: rgb(0, 116, 0);
+    color: rgb(240, 240, 240);
+    text-decoration: none;
+    border-radius: 20px;
+    border: none;
+    margin-top: 10px;
+    /* nzm zasto nije htelo ovako da centrira, pa sam preko flexbox-a */
+    /* width: fit-content;
+    margin: auto !important; */
+}
+
+.title{
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 20px;
 }

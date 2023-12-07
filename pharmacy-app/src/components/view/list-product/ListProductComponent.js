@@ -1,13 +1,29 @@
 import React from 'react'
 import './ListProductComponent.css';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import ProductService from '../../../services/ProductService';
 
 const ListProductComponent = (props) => {
   const productList = props.productList;
+  const navigate = useNavigate();
+
+  const navigateToCreateProduct = () =>{
+    navigate('/create-product');
+  }
+
+  useEffect(() => {
+    console.log(JSON.stringify(productList));
+    ProductService.getProducts();
+  }, [])
+  
+
   return (
-    <div>
-      {productList.length ===0 && <h1 className='text-center'>List is empty</h1>}
-      {productList.length !==0 && <h1 className='text-center'>Product list</h1>}
-      {productList.length !==0 && <table id="table" className='table table-hover'> 
+    <div className='list-product-container'>
+      {productList && productList.length ===0 && <div className='title'>List is empty</div>}
+      {productList && productList.length !==0 && <div className='title'>Product list</div>}
+      {productList && productList.length !==0 && <table id="table" className='table table-hover'> 
                 <thead className='thead-name'>
                     <tr>
                         <th className='theadth'>ID</th>
@@ -39,6 +55,10 @@ const ListProductComponent = (props) => {
                 </tbody>
             </table>
         }   
+        <div className='btn-container'>
+            <button className='btn-create-product' onClick={navigateToCreateProduct}>Create new product</button>
+        </div>
+       
     </div>
   )
 }
