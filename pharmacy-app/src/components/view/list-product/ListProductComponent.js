@@ -3,19 +3,44 @@ import './ListProductComponent.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import ProductService from '../../../services/ProductService';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import AlertService from '../../../services/AlertService';
 
 const ListProductComponent = (props) => {
   const productList = props.productList;
+  const setProductList = props.setProductList;
   const navigate = useNavigate();
 
   const navigateToCreateProduct = () =>{
     navigate('/create-product');
   }
 
-  useEffect(() => {
-    console.log(JSON.stringify(productList));
-    ProductService.getProducts();
-  }, [])
+  const deleteProduct = (index) =>{
+    setProductList(productList.filter((product, i) => i !== index));
+    AlertService.alertSuccess("Succesfully deleted product!");
+  }
+
+  // useEffect(() => {
+  //   console.log(JSON.stringify(productList));
+  //   ProductService.getProducts();
+  // }, [])
+
+  const alertAreYouSureDelete = (productId, index) =>{
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "If you click yes, product with ID: " + productId + " will be deleted",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProduct(index);
+      }
+    })
+  }
   
 
   return (
@@ -30,12 +55,12 @@ const ListProductComponent = (props) => {
                         <th className='theadth'>Manufacturer</th>
                         <th className='theadth'>Price</th>
                         <th className='theadth'>Expiry date</th>
-                        {/* <th className='theadth'>Action</th> */}
+                        <th className='theadth'>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {productList.map(
-                      product =>
+                      (product, index) =>
                         <tr key= {product.id}>
                         <td className="td-content">{product.id}</td>
                         <td className="td-content">{product.name}</td>
@@ -43,11 +68,11 @@ const ListProductComponent = (props) => {
                         <td className="td-content">{product.price}</td>
                         <td className="td-content">{product.expiryDate}</td>
                         
-                        {/* <td>
+                        <td>
                             <Link className='btn btn-success' to={`/edit-product/${product.id}`}>Update</Link>
-                            <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(product.id)}
+                            <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(product.id, index)}
                             style={{marginLeft:"5px"}}>Delete</button>
-                        </td>                         */}
+                        </td>                        
                     </tr>
                         )
                     }

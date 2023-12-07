@@ -78,7 +78,7 @@ function App() {
             <div className='view-components-container'>
               <Routes>
                   <Route path='/' element={<ListProductComponent productList = {productList}></ListProductComponent>}></Route>
-                  <Route path='/list-product' element={<ListProductComponent productList = {productList}></ListProductComponent>}></Route>
+                  <Route path='/list-product' element={<ListProductComponent productList = {productList} setProductList = {setProductList}></ListProductComponent>}></Route>
                   <Route path='/create-product' element={<CreateProductComponent setProductList={setProductList} productList = {productList}></CreateProductComponent>}></Route>
                   <Route path='/edit-product/:id' element={<EditProductComponent></EditProductComponent>}></Route>
                   <Route path='/about' element={<AboutApplicationComponent></AboutApplicationComponent>}></Route>
