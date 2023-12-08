@@ -29,8 +29,9 @@
     font-size: 20px;
 } */
 
-.info-container{
+.info-container-about{
     display: flex;
+    margin-top: 16px;
 }
 
 .github-icon{

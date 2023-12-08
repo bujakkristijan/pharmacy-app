@@ -9,12 +9,12 @@ const AboutApplicationComponent = () => {
   return (
     <div className='about-container'>
       <div className='title-about'>About application</div>
-      <div className='info-container'>
+      <div className='info-container-about'>
         <div className='info'>Produced by: </div>
         <div className='info-content'>Kristijan Bujak</div>
       </div>
       
-      <div className='info-container'>
+      <div className='info-container-about'>
         <div className='info'>Version: </div>
         <div className='info-content'>1.0.0</div>
       </div>
