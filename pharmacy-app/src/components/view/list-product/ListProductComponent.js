@@ -62,7 +62,7 @@ const ListProductComponent = (props) => {
                         <th className='theadth'>ID</th>
                         <th className='theadth'>Name</th>
                         <th className='theadth'>Manufacturer</th>
-                        <th className='theadth'>Price</th>
+                        <th className='theadth'>Price (EUR)</th>
                         <th className='theadth'>Expiry date</th>
                         <th className='theadth'>Action</th>
                     </tr>

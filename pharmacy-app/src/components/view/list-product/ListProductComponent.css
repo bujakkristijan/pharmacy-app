@@ -38,7 +38,7 @@
 
 .table-container{
     max-height: 340px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .swal2-confirm.swal2-styled.swal2-default-outline{
