@@ -1,5 +1,5 @@
 ## Pharmacy application
-Project is implemented with ReactJS(Hooks) library, with additional libraries such as Bootstrap and SweetAlert2.
+Project is implemented using ReactJS(Hooks) library, along with additional libraries such as Bootstrap and SweetAlert2.
 Application is used for maintenance of pharmacy products.
 
 **How it works**
