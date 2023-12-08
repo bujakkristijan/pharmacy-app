@@ -24,7 +24,7 @@ longer available.
 **Application UI preview and features**
 
 When the app starts, router is navigated to ListProduct component
-Initial products are stored in localStorage and state of the component, then they are listed in the table
+Initial products are stored in localStorage and state (list) of the component is set to those values, then products are listed in the table
 
 ![list-preview](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/d48ad1af-ed5e-411f-b33c-c81b973a5330)
 
@@ -41,7 +41,7 @@ After valid input, user will succesfully create new product
 ![valid-input](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/8e1aff25-28f5-49cb-830b-faaa75aeb2f8)
 ![success-added-product](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/966e5dc8-687a-49fa-957c-348c1705b631)
 
-Product is added to localStorage and state, so table will be updated with new values
+Product is added to the localStorage and state (list) of the component is updated, so table wil re-render containing new values (products)
 
 ![list-updated](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/1eb0c26d-be50-4f7b-aea0-ebb7e49c1ede)
 
