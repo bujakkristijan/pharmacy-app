@@ -15,18 +15,7 @@ function App() {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    let localList = localStorage.getItem('productList') || [];
-    if(localList.length === 0){
-      localList = [];
-      localStorage.setItem('productList',JSON.stringify(localList))
-    } else {
-      try {
-        localList = JSON.parse(localList)
-      } catch (error) {
-        console.log(error);
-      }
-      
-    }
+    let localList = JSON.parse(localStorage.getItem('productList')) || [];
     setProductList(localList);
   }, [])
   
