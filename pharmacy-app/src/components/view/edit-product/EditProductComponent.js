@@ -9,14 +9,6 @@ import { useParams } from 'react-router-dom';
 const EditProductComponent = (props) => {
   const setProductList = props.setProductList;
   const productList = props.productList;
-  const [product, setProduct] = useState({
-    id: '',
-    name: '',
-    price: 1,
-    manufacturer: null,
-    expiryDate: new Date(),
-  });
-  // const [productList, setProductList] = useState([]);
 
   const {id} = useParams();
   const [name, setName] = useState("");
