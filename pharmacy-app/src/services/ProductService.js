@@ -1,10 +1,10 @@
 class ProductService {
-    constructor() {
-      this.initializeProducts();
-    }
-  
+
     initializeProducts() {
+
+      const isInitialized = localStorage.getItem('isInitialized');
       
+      if (!isInitialized) {
         const initialProducts = [
             
                 {
@@ -69,7 +69,9 @@ class ProductService {
         console.log(JSON.stringify(initialProducts));
         localStorage.setItem("productList", JSON.stringify(initialProducts));
         localStorage.setItem("manufacturerList", JSON.stringify(initialManufacturers));
-      
+
+        localStorage.setItem('isInitialized', 'true');
+        }
     }
   
     getProducts() {

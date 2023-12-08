@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     let localList = localStorage.getItem('productList') || [];
-    if(!localList){
+    if(localList.length === 0){
       localList = [];
       localStorage.setItem('productList',JSON.stringify(localList))
     } else {
