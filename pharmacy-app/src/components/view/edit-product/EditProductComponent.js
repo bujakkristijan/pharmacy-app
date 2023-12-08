@@ -29,11 +29,9 @@ const EditProductComponent = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-
-  
     fetchProduct();
     getProductList();
-  }, [id, navigate]);
+  }, []);
 
   const fetchProduct = async () => {
     try {

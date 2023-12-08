@@ -24,7 +24,6 @@ const CreateProductComponent = (props) => {
     setManufacturers(ProductService.getManufacturers());
   }, [])
   
-
   const createProduct = () =>{
     console.log("exp date" + expiryDate);
     console.log("new date" + new Date());
@@ -40,7 +39,6 @@ const CreateProductComponent = (props) => {
       AlertService.alertSuccess("Successfully added product!")
       setTimeout(()=>navigateToListProduct(), 1500);
       // ProductService.addProduct(newProduct);
-      
     }
   }
 

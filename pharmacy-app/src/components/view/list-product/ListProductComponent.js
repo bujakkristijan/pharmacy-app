@@ -3,7 +3,6 @@ import './ListProductComponent.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import ProductService from '../../../services/ProductService';
-import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import AlertService from '../../../services/AlertService';
 
@@ -11,8 +10,6 @@ const ListProductComponent = (props) => {
   
   let productList = props.productList;
   const setProductList = props.setProductList;
-
-  
 
   const navigate = useNavigate();
 
@@ -26,12 +23,10 @@ const ListProductComponent = (props) => {
   }
 
   useEffect(() => {
-  
     productList = ProductService.getProducts();
   }, [])
 
   const navigateToEditProductComponent = (product) =>{
-    // Navigate to EditProductComponent with the product as a prop
     navigate(`/edit-product/${product.id}`);
   }
 
@@ -51,7 +46,6 @@ const ListProductComponent = (props) => {
     })
   }
   
-
   return (
     <div className='list-product-container'>
       {productList && productList.length ===0 && <div className='title'>List is empty</div>}
@@ -76,7 +70,6 @@ const ListProductComponent = (props) => {
                         <td className="td-content">{product.manufacturer.name}</td>
                         <td className="td-content">{product.price}</td>
                         <td className="td-content">{product.expiryDate}</td>
-                        
                         <td>
                             <button className='btn btn-success' onClick={()=>navigateToEditProductComponent(product)}>Update</button>
                             <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(product.id, index)}
