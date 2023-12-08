@@ -29,6 +29,7 @@ Initial products are stored in localStorage and state (list) of the component is
 ![list-preview](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/d48ad1af-ed5e-411f-b33c-c81b973a5330)
 
 Clicking on button *Create new product*, router will navigate to CreateProduct component
+Combobox (Select) will be filled with manufacturers (options) from localStorage.
 
 ![create-preview](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/34e8257e-ee68-4f1e-bc85-f37cfc034b6d)
 
