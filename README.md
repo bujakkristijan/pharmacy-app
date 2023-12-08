@@ -23,7 +23,7 @@ longer available.
 
 **Application UI preview and features**
 
-When the app starts, router is navigated to ListProduct component
+When the app starts, router is navigated to ListProduct component,
 Initial products are stored in localStorage and state (list) of the component is set to those values, then products are listed in the table
 
 ![list-preview](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/d48ad1af-ed5e-411f-b33c-c81b973a5330)
