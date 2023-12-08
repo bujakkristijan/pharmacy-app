@@ -90,6 +90,28 @@ class ProductService {
       const products = this.getProducts();
       this.saveProducts([...products, newProduct]);
     }
+
+    // getProductById(id) {
+    //     const products = this.getProducts();
+    //     return products.filter((product) => product.id === id) || null;
+    //   }
+    // MORA PROMISE DA VRACA !!! 
+      async getProductById(id) {
+        return new Promise((resolve, reject) => {
+          try {
+            const products = this.getProducts();
+            const filteredProduct = products.find((product) => product.id === id);
+    
+            if (filteredProduct) {
+              resolve(filteredProduct);
+            } else {
+              resolve(null); // Resolve with null if product not found
+            }
+          } catch (error) {
+            reject(error);
+          }
+        });
+      }
   }
   
   export default new ProductService();

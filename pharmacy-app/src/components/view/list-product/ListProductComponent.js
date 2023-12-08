@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import AlertService from '../../../services/AlertService';
 
 const ListProductComponent = (props) => {
+  
   const productList = props.productList;
   const setProductList = props.setProductList;
   const navigate = useNavigate();
@@ -25,6 +26,11 @@ const ListProductComponent = (props) => {
   //   console.log(JSON.stringify(productList));
   //   ProductService.getProducts();
   // }, [])
+
+  const navigateToEditProductComponent = (product) =>{
+    // Navigate to EditProductComponent with the product as a prop
+    navigate(`/edit-product/${product.id}`);
+  }
 
   const alertAreYouSureDelete = (productId, index) =>{
     Swal.fire({
@@ -69,7 +75,7 @@ const ListProductComponent = (props) => {
                         <td className="td-content">{product.expiryDate}</td>
                         
                         <td>
-                            <Link className='btn btn-success' to={`/edit-product/${product.id}`}>Update</Link>
+                            <button className='btn btn-success' onClick={()=>navigateToEditProductComponent(product)}>Update</button>
                             <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(product.id, index)}
                             style={{marginLeft:"5px"}}>Delete</button>
                         </td>                        

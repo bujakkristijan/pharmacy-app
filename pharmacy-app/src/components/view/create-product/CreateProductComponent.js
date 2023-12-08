@@ -15,7 +15,8 @@ const CreateProductComponent = (props) => {
   const [manufacturer, setManufacturer] = useState({id: "m1", name: "Manufacturer 1"});
   const [expiryDate, setExpiryDate] = useState(new Date());
 
-  const [manufacturers, setManufacturers] = useState(localStorage.getItem("manufacturersList") || []);
+  // const [manufacturers, setManufacturers] = useState(JSON.parse(localStorage.getItem("manufacturersList")) || []);
+  const [manufacturers, setManufacturers] = useState([]);
 
   const navigate = useNavigate();
 
