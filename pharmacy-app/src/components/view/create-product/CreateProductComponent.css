@@ -1,11 +1,12 @@
 .create-product-container{
     width: 40%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
+    /* margin-left: auto;
+    margin-right: auto; */
+    /* margin-top: 40px; */
     padding: 20px 30px;
     border-radius: 20px;
     box-shadow: 0 0 10px 0 rgb(0,0, 0, 0.2);
+    background-color: white;
 }
 
 .info-container{

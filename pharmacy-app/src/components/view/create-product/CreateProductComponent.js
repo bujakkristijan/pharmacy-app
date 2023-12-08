@@ -26,8 +26,10 @@ const CreateProductComponent = (props) => {
   
 
   const createProduct = () =>{
-    if(id.trim() === "" || name.trim() === "" || isNaN(parseInt(price)) || parseInt(price) < 0 || manufacturer == undefined || expiryDate < new Date()){
-      AlertService.alertFail("Invalid input, try again!");
+    console.log("exp date" + expiryDate);
+    console.log("new date" + new Date());
+    if(id.trim() === "" || name.trim() === "" || isNaN(parseInt(price)) || parseInt(price) < 0 || manufacturer == undefined || new Date(expiryDate) < new Date()){
+      AlertService.alertFail("Invalid input, try again! Make sure that date is not in the past and price is valid as well!");
     }
     else if(checkIfIdExist() === true){
       AlertService.alertFail("ID already exists, try another one!");

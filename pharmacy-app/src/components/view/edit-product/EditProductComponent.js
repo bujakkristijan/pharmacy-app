@@ -67,8 +67,8 @@ const EditProductComponent = (props) => {
   }
   const updateProduct = () => {
 
-    if(name.trim() === "" || isNaN(parseInt(price)) || parseInt(price) < 0 || manufacturer == undefined || expiryDate < new Date()){
-      AlertService.alertFail("Invalid input, try again!");
+    if(name.trim() === "" || isNaN(parseInt(price)) || parseInt(price) < 0 || manufacturer == undefined || new Date(expiryDate) < new Date()){
+      AlertService.alertFail("Invalid input, try again! Make sure that date is not in the past and price is valid as well!");
     }
     const updatedProduct = {id: id, name: name, manufacturer: manufacturer, price: price, expiryDate: expiryDate};
     const productIndex = productList.findIndex((p) => p.id === id);
