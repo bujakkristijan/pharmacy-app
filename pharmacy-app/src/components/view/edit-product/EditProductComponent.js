@@ -21,6 +21,7 @@ const EditProductComponent = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    getManfacturers();
     fetchProduct();
     getProductList();
   }, []);
@@ -42,11 +43,15 @@ const EditProductComponent = (props) => {
         AlertService.alertFail('Product not found');
         navigate('/list-product');
       }
-      setManufacturers(ProductService.getManufacturers());
+      
     } catch (error) {
       console.error('Error fetching product:', error);
     }
   };
+
+  const getManfacturers = () =>{
+    setManufacturers(ProductService.getManufacturers());
+  }
 
   const getProductList = () =>{
     setProductList(ProductService.getProducts());
