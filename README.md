@@ -52,7 +52,7 @@ Clicking on *Delete* button, user will get modal window to confirm delete action
 ![success-deleted-product](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/be387df1-18e6-4d69-bcfb-329c4c05f2ac)
 
 Clicking on *Update* button, router will redirect to EditComponent.
-User can't change ID value and need to insert valid data again, same as he needed to while creating product.
+User can't change ID value and he needs to insert valid data again, same as he had to while creating product.
 
 ![edit-product](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/cc0ba832-bd98-403b-b1f0-9b351ba8ee16)
 ![date-in-past-edit](https://github.com/bujakkristijan/food-ordering-app/assets/76042091/291fe5c0-227b-45b0-bcc8-184d57be8a9d)
