@@ -6,7 +6,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-const EditProductComponent = () => {
+const EditProductComponent = (props) => {
+  const setProductList = props.setProductList;
+  const productList = props.productList;
   const [product, setProduct] = useState({
     id: '',
     name: '',
@@ -14,6 +16,8 @@ const EditProductComponent = () => {
     manufacturer: null,
     expiryDate: new Date(),
   });
+  // const [productList, setProductList] = useState([]);
+
   const {id} = useParams();
   const [name, setName] = useState("");
   const [price, setPrice] = useState(1);
@@ -25,35 +29,57 @@ const EditProductComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        // nije mi jasno zasto mora promise da vraca, jedino tako radi
-        // i bez promise-a ispise u console.log fetchedProduct dobro, ali kao da setProduct ne setuje dobro,
-        // mada ni ne udje u else uopste, trebalo bi da radi i bez promise-a - PROVERITI POSLE ZASTO TAKO MORA
-        const fetchedProduct = await ProductService.getProductById(id);
-        if (fetchedProduct) {
-          console.log("FETCHED PRODUCT" + JSON.stringify(fetchedProduct));
-          setProduct(fetchedProduct);
-        } else {
-          AlertService.alertFail('Product not found');
-          navigate('/list-product');
-        }
-        setManufacturers(ProductService.getManufacturers());
-      } catch (error) {
-        console.error('Error fetching product:', error);
-      }
-    };
+
   
     fetchProduct();
+    getProductList();
   }, [id, navigate]);
+
+  const fetchProduct = async () => {
+    try {
+      // nije mi jasno zasto mora promise da vraca, jedino tako radi
+      // i bez promise-a ispise u console.log fetchedProduct dobro, ali kao da setProduct ne setuje dobro,
+      // mada ni ne udje u else uopste, trebalo bi da radi i bez promise-a - PROVERITI POSLE ZASTO TAKO MORA
+      const fetchedProduct = await ProductService.getProductById(id);
+      if (fetchedProduct) {
+        console.log("FETCHED PRODUCT" + JSON.stringify(fetchedProduct));
+        setName(fetchedProduct.name);
+        setPrice(fetchedProduct.price);
+        setManufacturer(fetchedProduct.manufacturer);
+        setExpiryDate(fetchedProduct.expiryDate);
+        // setProduct(fetchedProduct);
+      } else {
+        AlertService.alertFail('Product not found');
+        navigate('/list-product');
+      }
+      setManufacturers(ProductService.getManufacturers());
+    } catch (error) {
+      console.error('Error fetching product:', error);
+    }
+  };
+
+  const getProductList = () =>{
+    setProductList(ProductService.getProducts());
+  }
   
   const navigateToListProduct = () =>{
     navigate("/list-product");
   }
+  const updateProduct = () => {
 
-  const updateProduct = (product) =>{
+    if(name.trim() === "" || isNaN(parseInt(price)) || parseInt(price) < 0 || manufacturer == undefined || expiryDate < new Date()){
+      AlertService.alertFail("Invalid input, try again!");
+    }
+    const updatedProduct = {id: id, name: name, manufacturer: manufacturer, price: price, expiryDate: expiryDate};
+    const productIndex = productList.findIndex((p) => p.id === id);
+    editProduct(updatedProduct, productIndex);
+    AlertService.alertSuccess("Succesfully edited product!");
+    setTimeout(() =>navigateToListProduct(), 1500);
+  };
 
-  }
+  const editProduct = (product, productIndex) =>{
+    setProductList(productList.map((p, index) => productIndex === index ? product : p));
+}
   
   return (
     <div className='create-product-container'>
@@ -64,19 +90,19 @@ const EditProductComponent = () => {
         </div>
         <div className='info-container'>
             <label className='item-label'>Name: </label>
-            <input value={product.name} className='form-control' type='text' onChange={(e) => setName(e.target.value)}></input>
+            <input value={name} className='form-control' type='text' onChange={(e) => setName(e.target.value)}></input>
         </div>
         <div className='info-container'>
             <label className='item-label'>Price: </label>
-            <input value={product.price} className='form-control' type='number'  onChange={(e) => setPrice(e.target.value)}></input>
+            <input value={price} className='form-control' type='number'  onChange={(e) => setPrice(e.target.value)}></input>
         </div>
         <div className='info-container'>
             <label className='item-label'>Expiry date: </label>
-            <input value={product.expiryDate} className='form-control' type='date'  onChange={(e) => setExpiryDate(e.target.value)}></input>
+            <input value={expiryDate} className='form-control' type='date'  onChange={(e) => setExpiryDate(e.target.value)}></input>
         </div>
         <div className='info-container'>
           <label className='item-label'>Manufacturer: </label>
-          <Form.Select value={JSON.stringify(product.manufacturer)} onChange={(e)=>setManufacturer(JSON.parse(e.target.value))}>
+          <Form.Select value={JSON.stringify(manufacturer)} onChange={(e)=>setManufacturer(JSON.parse(e.target.value))}>
                     {manufacturers.map((manufact)=> {
                       return (
                         <option key={manufact.id} value={JSON.stringify(manufact)} >{manufact.name}</option>
@@ -86,7 +112,7 @@ const EditProductComponent = () => {
         </div>
         
         <div className='btn-container'>
-            <button className='btn-create-product' onClick={() => updateProduct(product)}>Submit</button>
+            <button className='btn-create-product' onClick={() => updateProduct()}>Submit</button>
         </div>
       
     </div>

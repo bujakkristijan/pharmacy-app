@@ -9,8 +9,11 @@ import AlertService from '../../../services/AlertService';
 
 const ListProductComponent = (props) => {
   
-  const productList = props.productList;
+  let productList = props.productList;
   const setProductList = props.setProductList;
+
+  
+
   const navigate = useNavigate();
 
   const navigateToCreateProduct = () =>{
@@ -22,10 +25,10 @@ const ListProductComponent = (props) => {
     AlertService.alertSuccess("Succesfully deleted product!");
   }
 
-  // useEffect(() => {
-  //   console.log(JSON.stringify(productList));
-  //   ProductService.getProducts();
-  // }, [])
+  useEffect(() => {
+  
+    productList = ProductService.getProducts();
+  }, [])
 
   const navigateToEditProductComponent = (product) =>{
     // Navigate to EditProductComponent with the product as a prop
