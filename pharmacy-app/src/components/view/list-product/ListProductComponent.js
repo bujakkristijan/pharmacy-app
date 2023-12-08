@@ -17,7 +17,7 @@ const ListProductComponent = (props) => {
   const navigate = useNavigate();
 
   const navigateToCreateProduct = () =>{
-    navigate('/create-product');
+    navigate('/pharmacy-app/create-product');
   }
 
   const deleteProduct = (index) =>{
@@ -32,7 +32,7 @@ const ListProductComponent = (props) => {
 
   const navigateToEditProductComponent = (product) =>{
     // Navigate to EditProductComponent with the product as a prop
-    navigate(`/edit-product/${product.id}`);
+    navigate(`/pharmacy-app/edit-product/${product.id}`);
   }
 
   const alertAreYouSureDelete = (productId, index) =>{
