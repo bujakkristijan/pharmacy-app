@@ -13,16 +13,9 @@ function App() {
 
   const [productList, setProductList] = useState(JSON.parse(localStorage.getItem('productList')) || []);
   const [manufacturerList, setManufacturerList] = useState([]);
-  const [isInitialized, setIsInitialized] = useState(JSON.parse(localStorage.getItem("isInitialized")) || false);
-
-  // useEffect(() => {
-  //   let localList = JSON.parse(localStorage.getItem('productList')) || [];
-  //   setProductList(localList);
-  // }, [])
-  
 
   useEffect(() => {
-    if(localStorage.getItem("isInitialized")=="true"){
+    if(localStorage.getItem("isInitialized")==="true"){
       setProductList(ProductService.getProducts());
 
     }
@@ -33,35 +26,11 @@ function App() {
     
   }, []);
   
-
-  const initializeProducts = () => {
-    const storedProducts = localStorage.getItem('productList');
-    const products = storedProducts ? JSON.parse(storedProducts) : [];
-
-    const storedManufacturers = localStorage.getItem('manufacturerList');
-    const manufacturers = storedManufacturers ? JSON.parse(storedManufacturers) : [];
-
-    setProductList(products);
-    setManufacturerList(manufacturers);
-    setIsInitialized(true);
-  };
-
-  // const updateProductList = (newProductList) => {
-  //   // Update the product list state and save it to local storage
-  //   setProductList(newProductList);
-  //   ProductService.saveProducts(newProductList);
-  // };
-
   // nzm zasto ovako nece, a trebalo bi da radi kada se posalje kao props create product komponenti, umesto toga saljem posebno
   // setProductList i productList
   const addProductToList = (newProduct) => {
     setProductList([...productList, newProduct]);
   }
-
-  // useEffect(() => {
-  //   localStorage.setItem('productList',JSON.stringify(productList));
-  // }, [productList])
-
 
   return (
     <Router>

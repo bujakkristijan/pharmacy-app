@@ -4,7 +4,7 @@ class ProductService {
     console.log("initialize");
     const isInitialized = localStorage.getItem('isInitialized');
     console.log("IS INITIALIZED" + isInitialized);
-    if (isInitialized != "true") {
+    if (isInitialized !== "true") {
       const initialProducts = [
           
               {
