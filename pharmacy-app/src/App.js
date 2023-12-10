@@ -7,6 +7,7 @@ import EditProductComponent from './components/view/edit-product/EditProductComp
 import SideNavbarComponent from './components/side-nav/SideNavbarComponent';
 import AboutApplicationComponent from './components/about/AboutApplicationComponent';
 import { useState, useEffect } from 'react';
+import ProductService from './services/ProductService';
 
 function App() {
 
@@ -22,21 +23,21 @@ function App() {
 
   useEffect(() => {
     if (!isInitialized) {
-      initializeProducts();
+      ProductService.initializeProducts();
     }
   }, [isInitialized]);
 
-  const initializeProducts = () => {
-    const storedProducts = localStorage.getItem('productList');
-    const products = storedProducts ? JSON.parse(storedProducts) : [];
+  // const initializeProducts = () => {
+  //   const storedProducts = localStorage.getItem('productList');
+  //   const products = storedProducts ? JSON.parse(storedProducts) : [];
 
-    const storedManufacturers = localStorage.getItem('manufacturerList');
-    const manufacturers = storedManufacturers ? JSON.parse(storedManufacturers) : [];
+  //   const storedManufacturers = localStorage.getItem('manufacturerList');
+  //   const manufacturers = storedManufacturers ? JSON.parse(storedManufacturers) : [];
 
-    setProductList(products);
-    setManufacturerList(manufacturers);
-    setIsInitialized(true);
-  };
+  //   setProductList(products);
+  //   setManufacturerList(manufacturers);
+  //   setIsInitialized(true);
+  // };
 
   // const updateProductList = (newProductList) => {
   //   // Update the product list state and save it to local storage
