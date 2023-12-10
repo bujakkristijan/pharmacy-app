@@ -1,9 +1,7 @@
 class ProductService {
 
   initializeProducts() {
-    console.log("initialize");
     const isInitialized = localStorage.getItem('isInitialized');
-    console.log("IS INITIALIZED" + isInitialized);
     if (isInitialized !== "true") {
       const initialProducts = [
           
@@ -66,15 +64,11 @@ class ProductService {
             "name": "Manufacturer 4"
           }
         ];
-      console.log("local storage" + JSON.stringify(initialProducts));
       localStorage.setItem("productList", JSON.stringify(initialProducts));
       localStorage.setItem("manufacturerList", JSON.stringify(initialManufacturers));
-      console.log("local storage " + localStorage.getItem("productList"));
       localStorage.setItem('isInitialized', 'true');
       }
-      else{
-        console.log("ELSE");
-      }
+
   }
 
   getProducts() {

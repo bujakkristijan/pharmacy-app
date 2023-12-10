@@ -17,13 +17,11 @@ function App() {
   useEffect(() => {
     if(localStorage.getItem("isInitialized")==="true"){
       setProductList(ProductService.getProducts());
-
     }
     else{
       ProductService.initializeProducts();
       setProductList(ProductService.getProducts());
     }
-    
   }, []);
   
   // nzm zasto ovako nece, a trebalo bi da radi kada se posalje kao props create product komponenti, umesto toga saljem posebno
