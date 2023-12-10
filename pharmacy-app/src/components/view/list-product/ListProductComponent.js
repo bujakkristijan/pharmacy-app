@@ -19,6 +19,7 @@ const ListProductComponent = (props) => {
 
   const deleteProduct = (index) =>{
     setProductList(productList.filter((product, i) => i !== index));
+    //cuvam i u localstorage
     ProductService.saveProducts(productList.filter((product, i) => i !== index));
     AlertService.alertSuccess("Succesfully deleted product!");
   }

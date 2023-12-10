@@ -69,6 +69,7 @@ const EditProductComponent = (props) => {
       const updatedProduct = {id: id, name: name, manufacturer: manufacturer, price: price, expiryDate: expiryDate};
       const productIndex = productList.findIndex((p) => p.id === id);
       editProduct(updatedProduct, productIndex);
+      //cuvam i u localstorage
       ProductService.saveProducts(productList.map((p, index) => productIndex === index ? updatedProduct : p));
       AlertService.alertSuccess("Succesfully edited product!");
       setTimeout(() =>navigateToListProduct(), 1500);

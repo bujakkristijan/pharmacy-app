@@ -36,6 +36,7 @@ const CreateProductComponent = (props) => {
     else{
       const newProduct = {id: id, name: name, manufacturer: manufacturer, price: price, expiryDate, expiryDate}
       setProductList([...productList, newProduct]);
+      //cuvam i u localstorage
       ProductService.saveProducts([...productList, newProduct]);
       AlertService.alertSuccess("Successfully added product!")
       setTimeout(()=>navigateToListProduct(), 1500);
