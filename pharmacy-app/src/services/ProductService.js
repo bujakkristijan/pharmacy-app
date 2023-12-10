@@ -1,7 +1,7 @@
 class ProductService {
 
     initializeProducts() {
-
+      console.log("initialize");
       const isInitialized = localStorage.getItem('isInitialized');
       
       if (!isInitialized) {
