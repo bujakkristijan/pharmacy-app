@@ -9,24 +9,28 @@ import AlertService from '../../../services/AlertService';
 const ListProductComponent = (props) => {
   
   let productList = props.productList;
-  const setProductList = props.setProductList;
+  let setProductList = props.setProductList;
+  // let deletePr = props.delete;
 
   const navigate = useNavigate();
 
   const navigateToCreateProduct = () =>{
     navigate('/create-product');
   }
+  
+  // useEffect(() => {
+  //   productList = ProductService.getProducts();
+  // }, [])
 
   const deleteProduct = (index) =>{
+    console.log(JSON.stringify(productList));
+    // deletePr(index);
+    console.log(index);
     setProductList(productList.filter((product, i) => i !== index));
     //cuvam i u localstorage
     ProductService.saveProducts(productList.filter((product, i) => i !== index));
     AlertService.alertSuccess("Succesfully deleted product!");
   }
-
-  useEffect(() => {
-    productList = ProductService.getProducts();
-  }, [])
 
   const navigateToEditProductComponent = (product) =>{
     navigate(`/edit-product/${product.id}`);

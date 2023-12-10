@@ -26,14 +26,10 @@ const EditProductComponent = (props) => {
     getProductList();
   }, []);
 
-  const fetchProduct = async () => {
+    const fetchProduct = () => {
     try {
-      // nije mi jasno zasto mora promise da vraca, jedino tako radi
-      // i bez promise-a ispise u console.log fetchedProduct dobro, ali kao da setProduct ne setuje dobro,
-      // mada ni ne udje u else uopste, trebalo bi da radi i bez promise-a - PROVERITI POSLE ZASTO TAKO MORA
-      const fetchedProduct = await ProductService.getProductById(id);
+      const fetchedProduct = ProductService.getProductById(id);
       if (fetchedProduct) {
-        console.log("FETCHED PRODUCT" + JSON.stringify(fetchedProduct));
         setName(fetchedProduct.name);
         setPrice(fetchedProduct.price);
         setManufacturer(fetchedProduct.manufacturer);
@@ -48,6 +44,7 @@ const EditProductComponent = (props) => {
       console.error('Error fetching product:', error);
     }
   };
+
 
   const getManfacturers = () =>{
     setManufacturers(ProductService.getManufacturers());
