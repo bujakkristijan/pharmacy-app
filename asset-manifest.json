@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/pharmacy-app/static/css/main.c004d1cd.css",
-    "main.js": "/pharmacy-app/static/js/main.959cc939.js",
-    "static/js/787.c0492dbe.chunk.js": "/pharmacy-app/static/js/787.c0492dbe.chunk.js",
-    "index.html": "/pharmacy-app/index.html",
-    "main.c004d1cd.css.map": "/pharmacy-app/static/css/main.c004d1cd.css.map",
-    "main.959cc939.js.map": "/pharmacy-app/static/js/main.959cc939.js.map",
-    "787.c0492dbe.chunk.js.map": "/pharmacy-app/static/js/787.c0492dbe.chunk.js.map"
+    "main.css": "/static/css/main.3859a1ba.css",
+    "main.js": "/static/js/main.b7e18d69.js",
+    "static/js/787.c0492dbe.chunk.js": "/static/js/787.c0492dbe.chunk.js",
+    "index.html": "/index.html",
+    "main.3859a1ba.css.map": "/static/css/main.3859a1ba.css.map",
+    "main.b7e18d69.js.map": "/static/js/main.b7e18d69.js.map",
+    "787.c0492dbe.chunk.js.map": "/static/js/787.c0492dbe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c004d1cd.css",
-    "static/js/main.959cc939.js"
+    "static/css/main.3859a1ba.css",
+    "static/js/main.b7e18d69.js"
   ]
 }
