@@ -13,31 +13,38 @@ function App() {
 
   const [productList, setProductList] = useState(JSON.parse(localStorage.getItem('productList')) || []);
   const [manufacturerList, setManufacturerList] = useState([]);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(JSON.parse(localStorage.getItem("isInitialized")) || false);
 
-  useEffect(() => {
-    let localList = JSON.parse(localStorage.getItem('productList')) || [];
-    setProductList(localList);
-  }, [])
+  // useEffect(() => {
+  //   let localList = JSON.parse(localStorage.getItem('productList')) || [];
+  //   setProductList(localList);
+  // }, [])
   
 
   useEffect(() => {
-    if (!isInitialized) {
-      ProductService.initializeProducts();
+    if(localStorage.getItem("isInitialized")=="true"){
+      setProductList(ProductService.getProducts());
+
     }
-  }, [isInitialized]);
+    else{
+      ProductService.initializeProducts();
+      setProductList(ProductService.getProducts());
+    }
+    
+  }, []);
+  
 
-  // const initializeProducts = () => {
-  //   const storedProducts = localStorage.getItem('productList');
-  //   const products = storedProducts ? JSON.parse(storedProducts) : [];
+  const initializeProducts = () => {
+    const storedProducts = localStorage.getItem('productList');
+    const products = storedProducts ? JSON.parse(storedProducts) : [];
 
-  //   const storedManufacturers = localStorage.getItem('manufacturerList');
-  //   const manufacturers = storedManufacturers ? JSON.parse(storedManufacturers) : [];
+    const storedManufacturers = localStorage.getItem('manufacturerList');
+    const manufacturers = storedManufacturers ? JSON.parse(storedManufacturers) : [];
 
-  //   setProductList(products);
-  //   setManufacturerList(manufacturers);
-  //   setIsInitialized(true);
-  // };
+    setProductList(products);
+    setManufacturerList(manufacturers);
+    setIsInitialized(true);
+  };
 
   // const updateProductList = (newProductList) => {
   //   // Update the product list state and save it to local storage
@@ -51,9 +58,10 @@ function App() {
     setProductList([...productList, newProduct]);
   }
 
-  useEffect(() => {
-    localStorage.setItem('productList',JSON.stringify(productList));
-  }, [productList])
+  // useEffect(() => {
+  //   localStorage.setItem('productList',JSON.stringify(productList));
+  // }, [productList])
+
 
   return (
     <Router>
