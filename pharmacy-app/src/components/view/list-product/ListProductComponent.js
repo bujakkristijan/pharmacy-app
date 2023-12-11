@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import ProductService from '../../../services/ProductService';
 import Swal from 'sweetalert2';
 import AlertService from '../../../services/AlertService';
+import Moment from 'moment';
 
 const ListProductComponent = (props) => {
   
@@ -75,7 +76,7 @@ const ListProductComponent = (props) => {
                         <td className="td-content">{product.name}</td>
                         <td className="td-content">{product.manufacturer.name}</td>
                         <td className="td-content">{product.price}</td>
-                        <td className="td-content">{product.expiryDate}</td>
+                        <td className="td-content">{Moment(product.expiryDate).format("DD-MM-YYYY")}</td>
                         <td>
                             <button className='btn btn-success' onClick={()=>navigateToEditProductComponent(product)}>Update</button>
                             <button className='btn btn-danger' onClick={() => alertAreYouSureDelete(product.id, index)}
